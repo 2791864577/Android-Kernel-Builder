@@ -7,7 +7,7 @@
       "device": "dipper",
       "defconfig": "nogravity-dipper_defconfig"
     },
-    "withKernelSU": true,
+    "withKernelSU": false,
     "toolchains": [
       {
         "repo": "https://github.com/Xiaomi-sdm845-KSU/android-kernel-tools",
