@@ -153,11 +153,10 @@ jobs:
           args: ${{ steps.generate-args.outputs.args }}
           arch: ${{ steps.generate-args.outputs.ARCH }}
         run: |
-          ls
           wget https://github.com/wu17481748/lxc-docker/releases/download/lxc-docker-2config/LXC-DOCKER-OPEN-CONFIG.sh
           chmod 777 LXC-DOCKER-OPEN-CONFIG.sh
-          ./LXC-DOCKER-OPEN-CONFIG.sh NGK_android_kernel_xiaomi_sdm845/arch/arm64/configs/${{ env.DEFCONFIG_NAME }} -w
-          echo "# CONFIG_ANDROID_PARANOID_NETWORK is not set" >> NGK_android_kernel_xiaomi_sdm845/arch/arm64/configs/${{ env.DEFCONFIG_NAME }}
+          ./LXC-DOCKER-OPEN-CONFIG.sh arch/arm64/configs/${{ env.DEFCONFIG_NAME }} -w
+          echo "# CONFIG_ANDROID_PARANOID_NETWORK is not set" >> arch/arm64/configs/${{ env.DEFCONFIG_NAME }}
 
 
           echo "PATH Variable: $PATH"
