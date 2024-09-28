@@ -157,8 +157,7 @@ jobs:
           make ${{ env.args }} ${{ env.DEFCONFIG_NAME }}
 
     
-      - name: 开启lxc和docker配置
-      if: env.ENABLE_LXC_DOCKER == 'true'
+      - name: "开启lxc和docker配置"
       run: |
 
         cd $GITHUB_WORKSPACE/kernel_workspace
