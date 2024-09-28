@@ -153,7 +153,15 @@ jobs:
           args: ${{ steps.generate-args.outputs.args }}
           arch: ${{ steps.generate-args.outputs.ARCH }}
         run: |
-          cd $GITHUB_WORKSPACE/kernel_workspace
+          wget https://github.com/wu17481748/lxc-docker/releases/download/lxc-docker-2config/LXC-DOCKER-OPEN-CONFIG.sh
+          chmod 777 LXC-DOCKER-OPEN-CONFIG.sh
+          ./LXC-DOCKER-OPEN-CONFIG.sh NGK_android_kernel_xiaomi_sdm845/arch/arm64/configs/dipper_user_defconfig -w
+          echo "# CONFIG_ANDROID_PARANOID_NETWORK is not set" >> NGK_android_kernel_xiaomi_sdm845/arch/arm64/configs/dipper_user_defconfig
+
+
+          echo "PATH Variable: $PATH"
+          make ${{ env.args }} ${{ env.DEFCONFIG_NAME }}
+
           
     
 
