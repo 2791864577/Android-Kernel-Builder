@@ -156,7 +156,25 @@ jobs:
           echo "PATH Variable: $PATH"
           make ${{ env.args }} ${{ env.DEFCONFIG_NAME }}
 
-      - name: "🎶 Build kernel"
+    
+      - name: 开启lxc和docker配置
+      if: env.ENABLE_LXC_DOCKER == 'true'
+      run: |
+
+        cd $GITHUB_WORKSPACE/kernel_workspace
+        wget https://github.com/wu17481748/lxc-docker/releases/download/lxc-docker-2config/LXC-DOCKER-OPEN-CONFIG.sh
+        chmod 777 LXC-DOCKER-OPEN-CONFIG.sh
+        ./LXC-DOCKER-OPEN-CONFIG.sh arch/arm64/configs/${{ env.KERNEL_CONFIG }} -w
+        echo "# CONFIG_ANDROID_PARANOID_NETWORK is not set" >> arch/arm64/configs/${{ env.KERNEL_CONFIG }}
+
+
+
+
+
+
+
+
+     - name: "🎶 Build kernel"
         working-directory: ${{ env.KERNEL_NAME }}
         env:
           args: ${{ steps.generate-args.outputs.args }}
