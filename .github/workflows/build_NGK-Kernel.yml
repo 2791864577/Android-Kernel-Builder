@@ -172,7 +172,7 @@ jobs:
 
 
 
-     - name: "🎶 Build kernel"
+      - name: "🎶 Build kernel"
         working-directory: ${{ env.KERNEL_NAME }}
         env:
           args: ${{ steps.generate-args.outputs.args }}
